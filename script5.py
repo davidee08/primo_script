@@ -9,6 +9,7 @@ SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 587
 SMTP_USER = ""      # <-- la tua email
 SMTP_PASSWORD = "b0f6a7ddf724d01b744e8c243e53196aS"
+send_email = False
 
 # -----------------------------
 # TEMPLATE EMAIL
@@ -47,9 +48,10 @@ for persona in righe:
     msg.set_content(testo)
 
     # Invia email
-    with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
-        server.starttls()
-        server.login(SMTP_USER, SMTP_PASSWORD)
-        server.send_message(msg)
-
-    print("Email inviata a:", email)
+    if send_email :
+         with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
+            server.starttls()
+            server.login(SMTP_USER, SMTP_PASSWORD)
+            server.send_message(msg)
+    else:
+        print("Email inviata a:", email)
